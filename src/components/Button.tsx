@@ -5,12 +5,13 @@ interface Props {
   title: string;
   onPress: () => void;
   theme: string | null | undefined;
+  disabled?: boolean;
 }
 
-const Button = ({title, onPress, theme}: Props) => {
+const Button = ({title, onPress, theme, disabled}: Props) => {
   const styles = theme === 'light' ? lightStyles : darkStyles;
   return (
-    <Pressable onPress={onPress}>
+    <Pressable onPress={onPress} disabled={disabled}>
       <View style={styles.container}>
         <Text style={styles.text}>{title}</Text>
       </View>
