@@ -1,13 +1,35 @@
-import {StyleSheet, Text, View, useColorScheme} from 'react-native';
-import React, {useState} from 'react';
+import {
+  Image,
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+  useColorScheme,
+} from 'react-native';
+import React from 'react';
 import Button from '../components/Button';
+import {NavigationProp} from '@react-navigation/native';
+import {useAppProvider} from '../providers/AppProvider';
 
-const HomeScreen = () => {
-  const [theme, setTheme] = useState<string | null | undefined>('light');
+interface Props {
+  navigation: NavigationProp<any>;
+}
+
+const HomeScreen = ({navigation}: Props) => {
+  const {theme, setTheme} = useAppProvider();
   const system = useColorScheme();
   const styles = theme === 'light' ? lightStyles : darkStyles;
   return (
     <View style={styles.container}>
+      <Pressable
+        style={styles.backContainer}
+        onPress={() => navigation.goBack()}>
+        <Image
+          source={require('../assets/back.png')}
+          style={styles.back}
+          resizeMode="contain"
+        />
+      </Pressable>
       <View style={styles.circle} />
       <Text style={styles.title}>LIGHT / DARK theme demo</Text>
       <Text style={styles.description}>
@@ -50,6 +72,16 @@ const lightStyles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#ffffff',
   },
+  backContainer: {
+    position: 'absolute',
+    top: 50,
+    left: 20,
+  },
+  back: {
+    height: 30,
+    width: 30,
+    tintColor: '#000000',
+  },
   circle: {
     backgroundColor: 'yellow',
     height: 100,
@@ -83,6 +115,16 @@ const darkStyles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#000000',
+  },
+  backContainer: {
+    position: 'absolute',
+    top: 50,
+    left: 20,
+  },
+  back: {
+    height: 30,
+    width: 30,
+    tintColor: '#ffffff',
   },
   circle: {
     backgroundColor: '#ffffff',

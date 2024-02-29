@@ -11,7 +11,7 @@ const AppContext = React.createContext<AppContextProps>({
 });
 
 const AppProvider = ({children}: any) => {
-  const [theme, setTheme] = useState<any>(null);
+  const [theme, setTheme] = useState<string | null | undefined>('light');
 
   return (
     <AppContext.Provider
