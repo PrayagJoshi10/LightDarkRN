@@ -83,7 +83,7 @@ const lightStyles = StyleSheet.create({
     tintColor: '#000000',
   },
   circle: {
-    backgroundColor: 'yellow',
+    backgroundColor: '#f5aa42',
     height: 100,
     width: 100,
     borderRadius: 50,
